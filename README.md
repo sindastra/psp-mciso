@@ -9,6 +9,8 @@ mCISO - minimal and portable CISO (PSP ISO compressor) based on BOOSTER's source
 * [x] Add license and copyright information to program output
 * [x] Clean up program output and add helpful information
 * [x] Create manual page
-* [ ] Provide cross-platform binaries for a large variety of targets
+* [x] Provide cross-platform binaries for a large variety of targets
+
+To get a binary release, please check https://github.com/sindastra/psp-mciso/releases
 
 ###### A copy of BOOSTER's original source (for documentation) can be found here https://github.com/sindastra/psp-ciso/
