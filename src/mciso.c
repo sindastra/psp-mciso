@@ -400,7 +400,7 @@ int main(int argc, char *argv[])
 	int level;
 	int result;
 
-	fprintf(stderr, "mCISO - Compressed ISO9660 (CSO) converter\n"
+	fprintf(stderr, "mCISO - Compressed ISO9660 (CSO) converter by Sindastra\n"
 	"based on the original CISO by BOOSTER\n"
 	"Copyright (C) 2005 BOOSTER\n"
 	"Copyright (C) 2019 Sindastra\n"
