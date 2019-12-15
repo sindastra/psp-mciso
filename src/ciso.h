@@ -20,7 +20,7 @@
 #ifndef __CISO_H__
 #define __CISO_H__
 /*
-	complessed ISO(9660) header format
+	compressed ISO(9660) header format
 */
 typedef struct ciso_header
 {
