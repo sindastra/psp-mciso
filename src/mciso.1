@@ -1,0 +1,24 @@
+.\" Manpage for mciso.
+.\" Contact https://github.com/sindastra/psp-mciso/issues to correct errors or typos.
+.TH man 1 "15 Dec 2019" "1.0" "mCISO man page"
+.SH NAME
+mCISO \- Compress ISO to CSO and decompress CSO to ISO
+.SH SYNOPSIS
+Usage: mciso <compression level> <input file> <output file>
+.SH DESCRIPTION
+mCISO (mciso) is a user level application to compress ISO files to CSO and to decompress CSO files to ISO depending on compression level chosen.
+This is useful if you want to fit more games onto your storage device.
+.SH OPTIONS
+mCISO (mciso) does not take options as such, but requires 3 parameters when executing: Compression level (0-9), input file (path) and output file (path).
+To decompress a CSO file to ISO you must choose compression level 0.
+To compress an ISO file to CSO you must choose a compression level from 1 to 9, where 1 means fast but less compression and 9 means slow but more compression.
+Please not that the compression level also affects gameplay. If you have performance issues, try a lower compression level. If unsure choose level 1.
+Some games do not play well with compression at all, in such case either keep the ISO format or convert from CSO to ISO.
+The input file must be ISO if compression level is 1-9 and CSO if compression level 0. The output file must be the opposing format of the input file.
+.SH BUGS
+No known bugs. Report bugs at https://github.com/sindastra/psp-mciso/issues
+.SH AUTHOR
+Sindastra https://github.com/sindastra/psp-mciso
+.SH COPYRIGHT
+Copyright (C) 2019 Sindastra
+
