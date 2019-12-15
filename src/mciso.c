@@ -134,11 +134,12 @@ int decomp_ciso(void)
 	}
 
 	/* show info */
-	printf("Decompress '%s' to '%s'\n",fname_in,fname_out);
-	printf("Total File Size %ld bytes\n",ciso.total_bytes);
-	printf("block size      %d  bytes\n",ciso.block_size);
-	printf("total blocks    %d  blocks\n",ciso_total_block);
-	printf("index align     %d\n",1<<ciso.align);
+	printf("Decompressing '%s' to '%s'\n",fname_in,fname_out);
+	printf("Starting file size: %ld bytes\n",ciso.total_bytes);
+	printf("Block size: %d bytes\n",ciso.block_size);
+	printf("Total blocks: %d blocks\n",ciso_total_block);
+	printf("Index align: %d\n",1<<ciso.align);
+	printf("\nPlease wait...\n");
 
 	/* init zlib */
 	z.zalloc = Z_NULL;
@@ -154,7 +155,7 @@ int decomp_ciso(void)
 		if(--percent_cnt<=0)
 		{
 			percent_cnt = percent_period;
-			printf("decompress %d%%\r",block / percent_period);
+			printf("Decompressing %d%%\r",block / percent_period);
 		}
 
 		if (inflateInit2(&z,-15) != Z_OK)
@@ -225,7 +226,7 @@ int decomp_ciso(void)
 		}
 	}
 
-	printf("ciso decompress completed\n");
+	printf("Decompression completed!\n");
 	return 0;
 }
 
@@ -275,11 +276,12 @@ int comp_ciso(int level)
 	z.opaque = Z_NULL;
 
 	/* show info */
-	printf("Compress '%s' to '%s'\n",fname_in,fname_out);
-	printf("Total File Size %ld bytes\n",ciso.total_bytes);
-	printf("block size      %d  bytes\n",ciso.block_size);
-	printf("index align     %d\n",1<<ciso.align);
-	printf("compress level  %d\n",level);
+	printf("Compressing '%s' to '%s'\n",fname_in,fname_out);
+	printf("Starting file size: %ld bytes\n",ciso.total_bytes);
+	printf("Block size: %d bytes\n",ciso.block_size);
+	printf("Index align: %d\n",1<<ciso.align);
+	printf("Compression level: %d\n",level);
+	printf("\nPlease wait...\n");
 
 	/* write header block */
 	fwrite(&ciso,1,sizeof(ciso),fout);
@@ -301,7 +303,7 @@ int comp_ciso(int level)
 		if(--percent_cnt<=0)
 		{
 			percent_cnt = percent_period;
-			printf("compress %3d%% avarage rate %3d%%\r"
+			printf("Compressing... %3d%% done (avarage rate %3d%%)... Please wait...\r"
 				,block / percent_period
 				,block==0 ? 0 : 100*write_pos/(block*0x800));
 		}
@@ -385,7 +387,7 @@ int comp_ciso(int level)
 	fseek(fout,sizeof(ciso),SEEK_SET);
 	fwrite(index_buf,1,index_size,fout);
 
-	printf("ciso compress completed , total size = %8d bytes , rate %d%%\n"
+	printf("Compression completed! Final size %8d bytes (%d%% of original size).\n"
 		,(int)write_pos,(int)(write_pos*100/ciso.total_bytes));
 	return 0;
 }
@@ -411,9 +413,18 @@ int main(int argc, char *argv[])
 
 	if (argc != 4)
 	{
-		printf("Usage: ciso level infile outfile\n");
-		printf("  level: 1-9 compress ISO to CSO (1=fast/large - 9=small/slow\n");
-		printf("         0   decompress CSO to ISO\n");
+		printf("Usage: mciso <level> <infile> <outfile>\n"
+		"\n"
+		"\tlevel:\t1-9\tcompression level for ISO to CSO\n\t\t\tfrom 1=large/fast to 9=small/slow\n"
+		"\t\t0\tdecompress CSO to ISO\n"
+		"\tinfile:\t\tInput file, ISO for levels 1-9, CSO for level 0\n"
+		"\toutfile:\tOutput file, opposite format of input file\n"
+		"\n"
+		"Example compression:\tmciso 3 game.iso game.cso\n"
+		"Example decompression:\tmciso 0 game.cso game.iso\n"
+		"\n"
+		);
+
 		return 0;
 	}
 	level = argv[1][0] - '0';
