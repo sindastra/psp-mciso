@@ -1,2 +1,2 @@
 mciso: mciso.c ciso.h
-	$(CC) mciso.c -o mciso -lz
+	$(CC) -static mciso.c -o mciso -lz
