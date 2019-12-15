@@ -398,7 +398,16 @@ int main(int argc, char *argv[])
 	int level;
 	int result;
 
-	fprintf(stderr, "Compressed ISO9660 converter Ver.1.01 by BOOSTER\n");
+	fprintf(stderr, "mCISO - Compressed ISO9660 (CSO) converter\n"
+	"based on the original CISO by BOOSTER\n"
+	"Copyright (C) 2005 BOOSTER\n"
+	"Copyright (C) 2019 Sindastra\n"
+	"\n"
+	"This program is distributed in the hope that it will be useful,\n"
+	"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+	"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+	"GNU General Public License for more details.\n\n"
+	);
 
 	if (argc != 4)
 	{
