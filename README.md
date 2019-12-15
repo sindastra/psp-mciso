@@ -6,7 +6,7 @@ mCISO - minimal and portable CISO (PSP ISO compressor) based on BOOSTER's source
 
 * [x] Update LICENSE from GPLv2 to GPLv3
 * [x] Clean up license and copyright headers
-* [ ] Add license and copyright information to program output
+* [x] Add license and copyright information to program output
 * [ ] Clean up program output and add helpful information
 * [ ] Create manual page
 * [ ] Provide cross-platform binaries for a large variety of targets
