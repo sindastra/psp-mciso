@@ -136,8 +136,8 @@ int decomp_ciso(void)
 
 	/* show info */
 	printf("Decompressing '%s' to '%s'\n",fname_in,fname_out);
-	printf("Starting file size: %ld bytes\n",ciso.total_bytes);
-	printf("Block size: %d bytes\n",ciso.block_size);
+	printf("Starting file size: %lld bytes\n",ciso.total_bytes);
+	printf("Block size: %ld bytes\n",ciso.block_size);
 	printf("Total blocks: %d blocks\n",ciso_total_block);
 	printf("Index align: %d\n",1<<ciso.align);
 	printf("\nPlease wait...\n");
@@ -208,7 +208,7 @@ int decomp_ciso(void)
 			cmp_size = ciso.block_size - z.avail_out;
 			if(cmp_size != ciso.block_size)
 			{
-				printf("block %d : block size error %d != %d\n",block,cmp_size , ciso.block_size);
+				printf("block %d : block size error %d != %ld\n",block,cmp_size , ciso.block_size);
 				return 1;
 			}
 		}
@@ -278,8 +278,8 @@ int comp_ciso(int level)
 
 	/* show info */
 	printf("Compressing '%s' to '%s'\n",fname_in,fname_out);
-	printf("Starting file size: %ld bytes\n",ciso.total_bytes);
-	printf("Block size: %d bytes\n",ciso.block_size);
+	printf("Starting file size: %lld bytes\n",ciso.total_bytes);
+	printf("Block size: %ld bytes\n",ciso.block_size);
 	printf("Index align: %d\n",1<<ciso.align);
 	printf("Compression level: %d\n",level);
 	printf("\nPlease wait...\n");
@@ -304,7 +304,7 @@ int comp_ciso(int level)
 		if(--percent_cnt<=0)
 		{
 			percent_cnt = percent_period;
-			printf("Compressing... %3d%% done (avarage rate %3d%%)... Please wait...\r"
+			printf("Compressing... %3d%% done (avarage rate %3lld%%)... Please wait...\r"
 				,block / percent_period
 				,block==0 ? 0 : 100*write_pos/(block*0x800));
 		}
